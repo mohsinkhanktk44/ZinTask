@@ -1,4 +1,5 @@
 import React from "react";
+//These Are the types for this components.
 type props = {
   title: string;
   description: string;
