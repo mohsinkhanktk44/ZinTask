@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useRef, useImperativeHandle, forwardRef } from "react";
+import Slider, { Settings } from "react-slick";
+import { BsArrowRightCircle, BsArrowLeftCircle } from "react-icons/bs";
 import ZinCard from "./ZinCard";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-//@ts-nocheck
-import { BsArrowRightCircle } from "react-icons/bs";
-import { BsArrowLeftCircle } from "react-icons/bs";
+interface SliderRef {
+  slickNext(): void;
+  slickPrev(): void;
+}
 
-const Slidercustom = () => {
+const Slidercustom = forwardRef<SliderRef>((props, ref) => {
   const carddata2 = [
     {
       title: "PDF to Word",
@@ -36,8 +36,7 @@ const Slidercustom = () => {
       img: "/text.png",
     },
   ];
-
-  const settings = {
+  const settings: Settings = {
     dots: false,
     infinite: true,
     speed: 500,
@@ -45,7 +44,17 @@ const Slidercustom = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
-  const slider = React.useRef(null);
+
+  const slider = useRef<Slider | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    slickNext: () => {
+      slider.current?.slickNext();
+    },
+    slickPrev: () => {
+      slider.current?.slickPrev();
+    },
+  }));
 
   return (
     <div className="relative w-full">
@@ -75,6 +84,6 @@ const Slidercustom = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Slidercustom;
