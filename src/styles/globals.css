@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* button css */
+
+.slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 55px;
+    z-index: 0;
+    background-color: #333333;
+    transform: translate(-110%, 0) skew(-30deg);
+    transition: 0.5s;
+}
+
+.slide:hover::before {
+    transform: translate(-5%, 0) skew(-15deg);
+}
+
+
+.slide2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130%;
+    height: 55px;
+    z-index: 0;
+    background-color: #ffb400;
+    transform: translate(-110%, 0) skew(-30deg);
+    transition: 0.5s;
+}
+
+.slide2:hover::before {
+    transform: translate(-5%, 0) skew(-15deg);
+}
